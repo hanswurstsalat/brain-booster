@@ -1,0 +1,380 @@
+html {
+  background-color: black;
+  --color-symbols: hsl(60, 2%, 77%);
+  --color-symbols-active: hsl(60, 68%, 93%);
+  --symbol-1: "🚀";
+  --symbol-2: "🌞";
+  --symbol-3: "⚽";
+  --symbol-4: "🏠";
+  --symbol-5: "🎲";
+  --symbol-6: "🧸";
+  --symbol-7: "🎸";
+  --symbol-8: "🌴";
+  --symbol-9: "🍺";
+  --symbol-10: "👑";
+  --symbol-11: "💋";
+  --symbol-12: "🔑";
+  --color-1: hsl(52, 99%, 44%);
+  --color-1-active: rgb(254, 250, 15);
+  --color-2: hsl(0, 99%, 28%);
+  --color-2-active: rgb(253, 58, 58);
+  --color-3: hsl(131, 99%, 27%);
+  --color-3-active: rgb(4, 253, 25);
+  --color-4: hsl(207, 98%, 39%);
+  --color-4-active: rgb(62, 187, 254);
+  --color-5: hsl(30, 97%, 38%);
+  --color-5-active: rgb(249, 165, 9);
+  --color-6: rgb(159, 44, 151);
+  --color-6-active: rgb(253, 4, 236);
+  --color-7: hsl(158, 48%, 21%);
+  --color-7-active: hsl(158, 48%, 52%);
+  --color-8: hsl(276, 52%, 31%);
+  --color-8-active: hsl(276, 87%, 66%);
+  --color-9: hsl(11, 30%, 30%);
+  --color-9-active: hsl(11, 64%, 70%);
+  --color-10: hsl(0, 53%, 54%);
+  --color-10-active: hsl(0, 98%, 81%);
+  --color-11: hsl(66, 97%, 28%);
+  --color-11-active: hsl(77, 98%, 50%);
+  --color-12: hsl(245, 94%, 32%);
+  --color-12-active: hsl(245, 95%, 56%);
+}
+
+.titleImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 366px;
+}
+
+.outerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerWrapper {
+  display: grid;
+  grid-template-rows: 150px 350px 100px;
+  grid-template-columns: 100%;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  background-image: url("img/metallic-background2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 366px;
+  height: 600px;
+  border: 5px solid #5a5959;
+  border-radius: 12px;
+}
+
+/*####### Settings #######*/
+.settings {
+  margin-top: 30px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 74px 74px 114px 56px;
+  grid-template-rows: 120px;
+  gap: 5px;
+}
+
+input[type="radio"] {
+  accent-color: black;
+}
+
+/*####### Playground #######*/
+.playground {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.container-4 {
+  grid-template-columns: 150px 150px;
+  grid-template-rows: 150px 150px;
+  gap: 11px;
+}
+
+.container-6 {
+  grid-template-columns: 150px 150px;
+  grid-template-rows: 100px 100px 100px;
+  gap: 11px;
+}
+
+.container-9 {
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  gap: 11px;
+}
+
+.container-12 {
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 75px 75px 75px 75px;
+  gap: 11px;
+}
+
+.padBack {
+  background: #303030;
+  border-radius: 12px;
+  margin-top: 3px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: 3px solid #aca8a8;
+  outline-offset: 1px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.padFront {
+  display: block;
+  margin-top: 2px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  color: white;
+  transform: translateY(-6px);
+}
+
+.backDimensions-4 {
+  width: 150px;
+  height: 150px;
+}
+
+.backDimensions-6 {
+  width: 150px;
+  height: 100px;
+}
+
+.backDimensions-9 {
+  width: 100px;
+  height: 100px;
+}
+
+.backDimensions-12 {
+  width: 100px;
+  height: 75px;
+}
+
+.frontDimensions-4 {
+  width: 150px;
+  height: 148px;
+}
+
+.frontDimensions-6 {
+  width: 150px;
+  height: 98px;
+}
+
+.frontDimensions-9 {
+  width: 100px;
+  height: 98px;
+}
+
+.frontDimensions-12 {
+  width: 100px;
+  height: 73px;
+}
+
+.padBack:active .padFront {
+  transform: translateY(-2px);
+}
+
+.colorSymbols {
+  background: var(--color-symbols);
+}
+
+.colorSymbols:active {
+  background: var(--color-symbols-active);
+}
+.color-1 {
+  background: var(--color-1);
+}
+
+.color-2 {
+  background: var(--color-2);
+}
+
+.color-3 {
+  background: var(--color-3);
+}
+
+.color-4 {
+  background: var(--color-4);
+}
+
+.color-5 {
+  background: var(--color-5);
+}
+
+.color-6 {
+  background: var(--color-6);
+}
+
+.color-7 {
+  background: var(--color-7);
+}
+
+.color-8 {
+  background: var(--color-8);
+}
+
+.color-9 {
+  background: var(--color-9);
+}
+
+.color-10 {
+  background: var(--color-10);
+}
+
+.color-11 {
+  background: var(--color-11);
+}
+
+.color-12 {
+  background: var(--color-12);
+}
+
+.color-1:active {
+  background-color: var(--color-1-active);
+}
+
+.color-2:active {
+  background-color: var(--color-2-active);
+}
+
+.color-3:active {
+  background-color: var(--color-3-active);
+}
+
+.color-4:active {
+  background-color: var(--color-4-active);
+}
+
+.color-5:active {
+  background-color: var(--color-5-active);
+}
+
+.color-6:active {
+  background-color: var(--color-6-active);
+}
+
+.color-7:active {
+  background-color: var(--color-7-active);
+}
+
+.color-8:active {
+  background-color: var(--color-8-active);
+}
+
+.color-9:active {
+  background-color: var(--color-9-active);
+}
+
+.color-10:active {
+  background-color: var(--color-10-active);
+}
+
+.color-11:active {
+  background-color: var(--color-11-active);
+}
+
+.color-12:active {
+  background-color: var(--color-12-active);
+}
+
+.symbols-4 {
+  font-size: 100px;
+}
+
+.symbols-6 {
+  font-size: 68px;
+}
+
+.symbols-9 {
+  font-size: 68px;
+}
+
+.symbols-12 {
+  font-size: 50px;
+}
+
+.symbol {
+  display: block;
+  opacity: 50%;
+}
+
+.symbol:active {
+  opacity: 100%;
+}
+
+.symbol-1::before {
+  content: var(--symbol-1);
+}
+
+.symbol-2::before {
+  content: var(--symbol-2);
+}
+
+.symbol-3::before {
+  content: var(--symbol-3);
+}
+
+.symbol-4::before {
+  content: var(--symbol-4);
+}
+
+.symbol-5::before {
+  content: var(--symbol-5);
+}
+
+.symbol-6::before {
+  content: var(--symbol-6);
+}
+
+.symbol-7::before {
+  content: var(--symbol-7);
+}
+
+.symbol-8::before {
+  content: var(--symbol-8);
+}
+
+.symbol-9::before {
+  content: var(--symbol-9);
+}
+
+.symbol-10::before {
+  content: var(--symbol-10);
+}
+
+.symbol-11::before {
+  content: var(--symbol-11);
+}
+
+.symbol-12::before {
+  content: var(--symbol-12);
+}
+
+/* ######## Controls ######## */
+.controls {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.startButton {
+  cursor: pointer;
+  padding: 6px 20px;
+  font-size: large;
+  border-radius: 6px;
+  border: 6px outset #878383;
+  outline: 6px inset #878383;
+  background-color: #6a6767;
+  color: white;
+}
+
+.startButton:hover {
+  background-color: #747272;
+}

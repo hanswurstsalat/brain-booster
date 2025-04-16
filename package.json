@@ -1,0 +1,20 @@
+{
+  "name": "brainbooster",
+  "private": true,
+  "version": "0.1.0",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "parcel": "^2.14.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

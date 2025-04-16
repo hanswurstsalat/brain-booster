@@ -89,30 +89,27 @@ input[type="radio"] {
   display: grid;
   justify-content: center;
   align-content: center;
+  gap: 11px;
 }
 
 .container-4 {
-  grid-template-columns: 150px 150px;
-  grid-template-rows: 150px 150px;
-  gap: 11px;
+  grid-template-columns: repeat(2, 150px);
+  grid-template-rows: repeat(2, 150px);
 }
 
 .container-6 {
-  grid-template-columns: 150px 150px;
-  grid-template-rows: 100px 100px 100px;
-  gap: 11px;
+  grid-template-columns: repeat(2, 150px);
+  grid-template-rows: repeat(3, 100px);
 }
 
 .container-9 {
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
-  gap: 11px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
 }
 
 .container-12 {
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 75px 75px 75px 75px;
-  gap: 11px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(4, 75px);
 }
 
 .padBack {
@@ -189,162 +186,122 @@ input[type="radio"] {
   transform: translateY(-6px);
 }
 
-.colorSymbols {
-  background: var(--color-symbols);
-}
-
 .padBack:active .colorSymbols {
   background: var(--color-symbols-active);
 }
 
+.colorSymbols,
 .padBack:disabled .colorSymbols {
   background: var(--color-symbols);
-}
-
-.color-1 {
-  background: var(--color-1);
-}
-
-.color-2 {
-  background: var(--color-2);
-}
-
-.color-3 {
-  background: var(--color-3);
-}
-
-.color-4 {
-  background: var(--color-4);
-}
-
-.color-5 {
-  background: var(--color-5);
-}
-
-.color-6 {
-  background: var(--color-6);
-}
-
-.color-7 {
-  background: var(--color-7);
-}
-
-.color-8 {
-  background: var(--color-8);
-}
-
-.color-9 {
-  background: var(--color-9);
-}
-
-.color-10 {
-  background: var(--color-10);
-}
-
-.color-11 {
-  background: var(--color-11);
-}
-
-.color-12 {
-  background: var(--color-12);
 }
 
 .padBack:active .color-1 {
   background-color: var(--color-1-active);
 }
 
-.padBack:disabled .color-1 {
-  background-color: var(--color-1);
-}
-
 .padBack:active .color-2 {
   background-color: var(--color-2-active);
-}
-
-.padBack:disabled .color-2 {
-  background-color: var(--color-2);
 }
 
 .padBack:active .color-3 {
   background-color: var(--color-3-active);
 }
 
-.padBack:disabled .color-3 {
-  background-color: var(--color-3);
-}
-
 .padBack:active .color-4 {
   background-color: var(--color-4-active);
-}
-
-.padBack:disabled .color-4 {
-  background-color: var(--color-4);
 }
 
 .padBack:active .color-5 {
   background-color: var(--color-5-active);
 }
 
-.padBack:disabled .color-5 {
-  background-color: var(--color-5);
-}
-
 .padBack:active .color-6 {
   background-color: var(--color-6-active);
-}
-
-.padBack:disabled .color-6 {
-  background-color: var(--color-6);
 }
 
 .padBack:active .color-7 {
   background-color: var(--color-7-active);
 }
 
-.padBack:disabled .color-7 {
-  background-color: var(--color-7);
-}
-
 .padBack:active .color-8 {
   background-color: var(--color-8-active);
-}
-
-.padBack:disabled .color-8 {
-  background-color: var(--color-8);
 }
 
 .padBack:active .color-9 {
   background-color: var(--color-9-active);
 }
 
-.padBack:disabled .color-9 {
-  background-color: var(--color-9);
-}
-
 .padBack:active .color-10 {
   background-color: var(--color-10-active);
-}
-
-.padBack:disabled .color-10 {
-  background-color: var(--color-10);
 }
 
 .padBack:active .color-11 {
   background-color: var(--color-11-active);
 }
 
-.padBack:disabled .color-11 {
-  background-color: var(--color-11);
-}
-
 .padBack:active .color-12 {
   background-color: var(--color-12-active);
 }
 
-.padBack:disabled .color-12 {
-  background-color: var(--color-12);
+.color-1,
+.padBack:disabled .color-1 {
+  background: var(--color-1);
 }
 
+.color-2,
+.padBack:disabled .color-2 {
+  background: var(--color-2);
+}
+
+.color-3,
+.padBack:disabled .color-3 {
+  background: var(--color-3);
+}
+
+.color-4,
+.padBack:disabled .color-4 {
+  background: var(--color-4);
+}
+
+.color-5,
+.padBack:disabled .color-5 {
+  background: var(--color-5);
+}
+
+.color-6,
+.padBack:disabled .color-6 {
+  background: var(--color-6);
+}
+
+.color-7,
+.padBack:disabled .color-7 {
+  background: var(--color-7);
+}
+
+.color-8,
+.padBack:disabled .color-8 {
+  background: var(--color-8);
+}
+
+.color-9,
+.padBack:disabled .color-9 {
+  background: var(--color-9);
+}
+
+.color-10,
+.padBack:disabled .color-10 {
+  background: var(--color-10);
+}
+
+.color-11,
+.padBack:disabled .color-11 {
+  background: var(--color-11);
+}
+
+.color-12,
+.padBack:disabled .color-12 {
+  background: var(--color-12);
+}
 .symbols-4 {
   font-size: 100px;
 }

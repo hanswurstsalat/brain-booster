@@ -28,6 +28,10 @@ function App() {
     setAppearance(value);
   }
 
+  function handleStartClick() {
+    setIsRunning(!isRunning);
+  }
+
   return (
     <>
       <img className="titleImg" src={titleImageUrl} alt="BrainBooster" />
@@ -42,6 +46,7 @@ function App() {
             handleChangeSteps={handleChangeSteps}
             handleChangeSpeed={handleChangeSpeed}
             handleChangeAppearance={handleChangeAppearance}
+            isRunning={isRunning}
           />
           <Playground
             numberOfPads={numberOfPads}
@@ -49,8 +54,12 @@ function App() {
             isRunning={isRunning}
           />
           <div className="controls">
-            <button type="button" className="startButton">
-              Start
+            <button
+              type="button"
+              className="startButton"
+              onClick={handleStartClick}
+            >
+              {isRunning ? "Reset" : "Start"}
             </button>
           </div>
         </div>

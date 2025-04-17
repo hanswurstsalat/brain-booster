@@ -11,6 +11,8 @@ function App() {
   const [speed, setSpeed] = React.useState("slow");
   const [appearance, setAppearance] = React.useState("symbols");
   const [isRunning, setIsRunning] = React.useState(false);
+  const [sequence, setSequence] = React.useState([]);
+  const [isSequenceRunning, setIsSequenceRunning] = React.useState(false);
 
   function handleChangePads(value) {
     setNumberOfPads(value);
@@ -28,8 +30,22 @@ function App() {
     setAppearance(value);
   }
 
-  function handleStartClick() {
-    setIsRunning(!isRunning);
+  function handleSequenceRunning(value) {
+    setIsSequenceRunning(value);
+  }
+
+  function handleStartClick(pads, steps) {
+    const newIsRunning = !isRunning;
+    if (newIsRunning) {
+      //create sequence-arry with random values
+      const sequenceArray = [];
+      for (let i = 0; i < steps; i++) {
+        sequenceArray.push(Math.floor(Math.random() * pads));
+      }
+      setSequence(sequenceArray);
+      setIsSequenceRunning(true);
+    }
+    setIsRunning(newIsRunning);
   }
 
   return (
@@ -52,12 +68,15 @@ function App() {
             numberOfPads={numberOfPads}
             appearance={appearance}
             isRunning={isRunning}
+            sequence={sequence}
+            isSequenceRunning={isSequenceRunning}
+            handleSequenceRunning={handleSequenceRunning}
           />
           <div className="controls">
             <button
               type="button"
               className="startButton"
-              onClick={handleStartClick}
+              onClick={() => handleStartClick(numberOfPads, numberOfSteps)}
             >
               {isRunning ? "Reset" : "Start"}
             </button>

@@ -186,6 +186,10 @@ input[type="radio"] {
   transform: translateY(-6px);
 }
 
+.padBack.active .padFront {
+  transform: translateY(-2px);
+}
+
 .padBack:active .colorSymbols {
   background: var(--color-symbols-active);
 }
@@ -193,6 +197,10 @@ input[type="radio"] {
 .colorSymbols,
 .padBack:disabled .colorSymbols {
   background: var(--color-symbols);
+}
+
+.padBack.active .colorSymbols {
+  background: var(--color-symbols-active);
 }
 
 .padBack:active .color-1 {
@@ -329,6 +337,10 @@ input[type="radio"] {
 
 .padBack:disabled .symbol {
   opacity: 50%;
+}
+
+.padBack.active .symbol {
+  opacity: 100%;
 }
 
 .symbol-1::before {

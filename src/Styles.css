@@ -310,6 +310,55 @@ input[type="radio"] {
 .padBack:disabled .color-12 {
   background: var(--color-12);
 }
+
+.padBack.active .color-1 {
+  background-color: var(--color-1-active);
+}
+
+.padBack.active .color-2 {
+  background-color: var(--color-2-active);
+}
+
+.padBack.active .color-3 {
+  background-color: var(--color-3-active);
+}
+
+.padBack.active .color-4 {
+  background-color: var(--color-4-active);
+}
+
+.padBack.active .color-5 {
+  background-color: var(--color-5-active);
+}
+
+.padBack.active .color-6 {
+  background-color: var(--color-6-active);
+}
+
+.padBack.active .color-7 {
+  background-color: var(--color-7-active);
+}
+
+.padBack.active .color-8 {
+  background-color: var(--color-8-active);
+}
+
+.padBack.active .color-9 {
+  background-color: var(--color-9-active);
+}
+
+.padBack.active .color-10 {
+  background-color: var(--color-10-active);
+}
+
+.padBack.active .color-11 {
+  background-color: var(--color-11-active);
+}
+
+.padBack.active .color-12 {
+  background-color: var(--color-12-active);
+}
+
 .symbols-4 {
   font-size: 100px;
 }
@@ -411,4 +460,8 @@ input[type="radio"] {
 
 .startButton:hover {
   background-color: #747272;
+}
+
+.startButton:disabled {
+  cursor: not-allowed;
 }

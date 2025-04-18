@@ -2,6 +2,7 @@ import React from "react";
 
 function Playground({
   numberOfPads,
+  speed,
   appearance,
   isRunning,
   sequence,
@@ -14,14 +15,51 @@ function Playground({
   const padRef1 = React.useRef();
   const padRef2 = React.useRef();
   const padRef3 = React.useRef();
+  const padRef4 = React.useRef();
+  const padRef5 = React.useRef();
+  const padRef6 = React.useRef();
+  const padRef7 = React.useRef();
+  const padRef8 = React.useRef();
+  const padRef9 = React.useRef();
+  const padRef10 = React.useRef();
+  const padRef11 = React.useRef();
 
-  const refArray = [padRef0, padRef1, padRef2, padRef3];
+  const refArray = [
+    padRef0,
+    padRef1,
+    padRef2,
+    padRef3,
+    padRef4,
+    padRef5,
+    padRef6,
+    padRef7,
+    padRef8,
+    padRef9,
+    padRef10,
+    padRef11,
+  ];
 
   const [isOn, setIsOn] = React.useState(false);
   const [index, setIndex] = React.useState(0);
 
+  function getSpeedInMs(value) {
+    switch (value) {
+      case "slow":
+        return [1000, 500];
+      case "medium":
+        return [700, 500];
+      case "fast":
+        return [400, 300];
+      case "warp":
+        return [200, 100];
+      default:
+        return [1000, 500];
+    }
+  }
+
+  const speedInMs = getSpeedInMs(speed);
+
   React.useEffect(() => {
-    console.log(index);
     if (isRunning) {
       if (index < sequence.length) {
         let timeoutId;
@@ -32,12 +70,12 @@ function Playground({
           timeoutId = window.setTimeout(() => {
             setIsOn(false);
             setIndex(index + 1);
-          }, 500);
+          }, speedInMs[1]);
         } else {
           refArray[sequence[index]].current.className += " active";
           timeoutId = window.setTimeout(() => {
             setIsOn(true);
-          }, 1000);
+          }, speedInMs[0]);
         }
         return () => {
           window.clearTimeout(timeoutId);

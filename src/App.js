@@ -2,12 +2,9 @@ import React from "react";
 import "./Styles.css";
 import Settings from "./components/Settings";
 import Playground from "./components/Playground";
-import fart from "url:./sound/fart.mp3";
 
 function App() {
   const titleImageUrl = new URL("./img/title.png", import.meta.url);
-
-  const [play] = useSound(fart, { volume: 1 });
 
   const [numberOfPads, setNumberOfPads] = React.useState(4);
   const [numberOfSteps, setNumberOfSteps] = React.useState(6);

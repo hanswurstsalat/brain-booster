@@ -1,4 +1,6 @@
 import React from "react";
+import useSound from "use-sound";
+import soundsprite from "url:../sound/brain-booster-sound-sprite.mp3";
 
 function Playground({
   numberOfPads,
@@ -42,6 +44,11 @@ function Playground({
   const [isOn, setIsOn] = React.useState(false);
   const [index, setIndex] = React.useState(0);
 
+  function handleClick(padIndex) {
+    const playId = `pad_${padIndex}`;
+    play({ id: playId });
+  }
+
   function getSpeedInMs(value) {
     switch (value) {
       case "slow":
@@ -59,6 +66,25 @@ function Playground({
 
   const speedInMs = getSpeedInMs(speed);
 
+  const [play] = useSound(soundsprite, {
+    sprite: {
+      pad_0: [0, 300],
+      pad_1: [500, 300],
+      pad_2: [1000, 300],
+      pad_3: [1500, 300],
+      pad_4: [2000, 300],
+      pad_5: [2500, 300],
+      pad_6: [3000, 300],
+      pad_7: [3500, 300],
+      pad_8: [4000, 300],
+      pad_9: [4500, 300],
+      pad_10: [5000, 300],
+      pad_11: [5500, 300],
+      success: [6000, 800],
+      error: [8000, 800],
+    },
+  });
+
   React.useEffect(() => {
     if (isRunning) {
       if (index < sequence.length) {
@@ -73,6 +99,8 @@ function Playground({
           }, speedInMs[1]);
         } else {
           refArray[sequence[index]].current.className += " active";
+          const playId = `pad_${sequence[index]}`;
+          play({ id: playId });
           timeoutId = window.setTimeout(() => {
             setIsOn(true);
           }, speedInMs[0]);
@@ -100,6 +128,7 @@ function Playground({
         id={key}
         className={`padBack backDimensions-${numberOfPads}`}
         disabled={isSequenceRunning}
+        onClick={() => handleClick(i)}
       >
         <div className={`padFront frontDimensions-${numberOfPads} ${color}`}>
           {appearance === "symbols" && <span className={symbolClasses}></span>}

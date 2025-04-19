@@ -30,6 +30,10 @@ function App() {
     setAppearance(value);
   }
 
+  function handleIsRunning(value) {
+    setIsRunning(value);
+  }
+
   function handleSequenceRunning(value) {
     setIsSequenceRunning(value);
   }
@@ -69,6 +73,7 @@ function App() {
             speed={speed}
             appearance={appearance}
             isRunning={isRunning}
+            handleIsRunning={handleIsRunning}
             sequence={sequence}
             isSequenceRunning={isSequenceRunning}
             handleSequenceRunning={handleSequenceRunning}

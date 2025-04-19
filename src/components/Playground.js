@@ -7,6 +7,7 @@ function Playground({
   speed,
   appearance,
   isRunning,
+  handleIsRunning,
   sequence,
   isSequenceRunning,
   handleSequenceRunning,
@@ -41,26 +42,46 @@ function Playground({
     padRef11,
   ];
 
+  const overlayRef = React.useRef();
+
   const [isOn, setIsOn] = React.useState(false);
   const [index, setIndex] = React.useState(0);
+  const [clickCount, setClickCount] = React.useState(0);
+  const [overlayText, setOverlayText] = React.useState("✅");
 
-  function handleClick(padIndex) {
-    const playId = `pad_${padIndex}`;
-    play({ id: playId });
+  function handleClick(padIndex, count) {
+    if (isRunning) {
+      if (padIndex !== sequence[count]) {
+        play({ id: "error" });
+        handleIsRunning(false);
+        setOverlayText("❌");
+        overlayRef.current.style.background = "rgba(253, 2, 2, 0.5)";
+        overlayRef.current.style.display = "block";
+      }
+      const newClickCount = count + 1;
+      setClickCount(newClickCount);
+      if (newClickCount >= sequence.length) {
+        play({ id: "success" });
+        handleIsRunning(false);
+        setOverlayText("✅");
+        overlayRef.current.style.background = "rgba(10, 253, 2, 0.5)";
+        overlayRef.current.style.display = "block";
+      }
+    }
   }
 
   function getSpeedInMs(value) {
     switch (value) {
       case "slow":
-        return [1000, 500];
+        return [800, 400];
       case "medium":
-        return [700, 500];
+        return [500, 250];
       case "fast":
-        return [400, 300];
+        return [250, 100];
       case "warp":
-        return [200, 100];
+        return [150, 100];
       default:
-        return [1000, 500];
+        return [800, 400];
     }
   }
 
@@ -80,10 +101,21 @@ function Playground({
       pad_9: [4500, 300],
       pad_10: [5000, 300],
       pad_11: [5500, 300],
-      success: [6000, 800],
+      success: [6000, 1000],
       error: [8000, 800],
     },
+    volume: 0.3,
   });
+
+  function playSound(padIndex) {
+    const playId = `pad_${padIndex}`;
+    play({ id: playId });
+  }
+
+  //play sound on mount to prevent sound-delay on first pad-click!
+  React.useEffect(() => {
+    play({ id: "success" });
+  }, []);
 
   React.useEffect(() => {
     if (isRunning) {
@@ -111,6 +143,7 @@ function Playground({
       } else {
         setIndex(0);
         handleSequenceRunning(false);
+        setClickCount(0);
       }
     }
   }, [isOn, isRunning]);
@@ -128,7 +161,8 @@ function Playground({
         id={key}
         className={`padBack backDimensions-${numberOfPads}`}
         disabled={isSequenceRunning}
-        onClick={() => handleClick(i)}
+        onClick={() => handleClick(i, clickCount)}
+        onMouseDown={() => playSound(i)}
       >
         <div className={`padFront frontDimensions-${numberOfPads} ${color}`}>
           {appearance === "symbols" && <span className={symbolClasses}></span>}
@@ -137,7 +171,20 @@ function Playground({
     );
   }
 
-  return <div className={`playground container-${numberOfPads}`}>{pads}</div>;
+  return (
+    <>
+      <div
+        ref={overlayRef}
+        id="overlay"
+        onClick={() => {
+          overlayRef.current.style.display = "none";
+        }}
+      >
+        <div id="overlayText">{overlayText}</div>
+      </div>
+      <div className={`playground container-${numberOfPads}`}>{pads}</div>
+    </>
+  );
 }
 
 export default Playground;

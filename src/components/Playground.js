@@ -12,8 +12,12 @@ function Playground({
   isSequenceRunning,
   handleSequenceRunning,
 }) {
-  let pads = [];
+  const [isOn, setIsOn] = React.useState(false);
+  const [index, setIndex] = React.useState(0);
+  const [clickCount, setClickCount] = React.useState(0);
+  const [overlayIcon, setOverlayIcon] = React.useState("✅");
 
+  const overlayRef = React.useRef();
   const padRef0 = React.useRef();
   const padRef1 = React.useRef();
   const padRef2 = React.useRef();
@@ -42,32 +46,47 @@ function Playground({
     padRef11,
   ];
 
-  const overlayRef = React.useRef();
-
-  const [isOn, setIsOn] = React.useState(false);
-  const [index, setIndex] = React.useState(0);
-  const [clickCount, setClickCount] = React.useState(0);
-  const [overlayText, setOverlayText] = React.useState("✅");
-
   function handleClick(padIndex, count) {
     if (isRunning) {
       if (padIndex !== sequence[count]) {
+        console.log("error");
         play({ id: "error" });
         handleIsRunning(false);
-        setOverlayText("❌");
+        setOverlayIcon("❌");
         overlayRef.current.style.background = "rgba(253, 2, 2, 0.5)";
         overlayRef.current.style.display = "block";
-      }
-      const newClickCount = count + 1;
-      setClickCount(newClickCount);
-      if (newClickCount >= sequence.length) {
-        play({ id: "success" });
-        handleIsRunning(false);
-        setOverlayText("✅");
-        overlayRef.current.style.background = "rgba(10, 253, 2, 0.5)";
-        overlayRef.current.style.display = "block";
+      } else {
+        const newClickCount = count + 1;
+        setClickCount(newClickCount);
+        if (newClickCount >= sequence.length) {
+          console.log("success");
+          play({ id: "success" });
+          handleIsRunning(false);
+          setOverlayIcon("✅");
+          overlayRef.current.style.background = "rgba(10, 253, 2, 0.5)";
+          overlayRef.current.style.display = "block";
+        }
       }
     }
+  }
+
+  function handleMouseDown(padIndex) {
+    refArray[padIndex].current.className += " active";
+    const playId = `pad_${padIndex}`;
+    play({ id: playId });
+  }
+
+  function handleMouseUp(padIndex) {
+    refArray[padIndex].current.className = refArray[
+      padIndex
+    ].current.className.replace(" active", "");
+  }
+
+  function handleRepeat() {
+    setIndex(0);
+    setClickCount(0);
+    handleIsRunning(true);
+    handleSequenceRunning(true);
   }
 
   function getSpeedInMs(value) {
@@ -107,12 +126,33 @@ function Playground({
     volume: 0.3,
   });
 
-  function playSound(padIndex) {
-    const playId = `pad_${padIndex}`;
-    play({ id: playId });
+  //create play-pads
+  let pads = [];
+  for (let i = 0; i < numberOfPads; i++) {
+    const color =
+      appearance === "symbols" ? "colorSymbols" : "color-" + (i + 1);
+    const symbolClasses = `symbols-${numberOfPads} symbol symbol-${i + 1}`;
+    const key = `${appearance}-${i}`;
+
+    pads.push(
+      <button
+        ref={refArray[i]}
+        key={key}
+        id={key}
+        className={`padBack backDimensions-${numberOfPads}`}
+        disabled={isSequenceRunning}
+        onClick={() => handleClick(i, clickCount)}
+        onMouseDown={() => handleMouseDown(i)}
+        onMouseUp={() => handleMouseUp(i)}
+      >
+        <div className={`padFront frontDimensions-${numberOfPads} ${color}`}>
+          {appearance === "symbols" && <span className={symbolClasses}></span>}
+        </div>
+      </button>
+    );
   }
 
-  //play sound on mount to prevent sound-delay on first pad-click!
+  //play sound on mount to prevent sound-delay on first pad-click! Bringt leider nix!!:-(
   React.useEffect(() => {
     play({ id: "success" });
   }, []);
@@ -148,29 +188,6 @@ function Playground({
     }
   }, [isOn, isRunning]);
 
-  for (let i = 0; i < numberOfPads; i++) {
-    const color =
-      appearance === "symbols" ? "colorSymbols" : "color-" + (i + 1);
-    const symbolClasses = `symbols-${numberOfPads} symbol symbol-${i + 1}`;
-    const key = `${appearance}-${i}`;
-
-    pads.push(
-      <button
-        ref={refArray[i]}
-        key={key}
-        id={key}
-        className={`padBack backDimensions-${numberOfPads}`}
-        disabled={isSequenceRunning}
-        onClick={() => handleClick(i, clickCount)}
-        onMouseDown={() => playSound(i)}
-      >
-        <div className={`padFront frontDimensions-${numberOfPads} ${color}`}>
-          {appearance === "symbols" && <span className={symbolClasses}></span>}
-        </div>
-      </button>
-    );
-  }
-
   return (
     <>
       <div
@@ -180,7 +197,13 @@ function Playground({
           overlayRef.current.style.display = "none";
         }}
       >
-        <div id="overlayText">{overlayText}</div>
+        <div id="overlayElements">
+          <span className="icon">{overlayIcon}</span>
+          <br />
+          {clickCount < sequence.length && (
+            <button onClick={handleRepeat}>Try again</button>
+          )}
+        </div>
       </div>
       <div className={`playground container-${numberOfPads}`}>{pads}</div>
     </>

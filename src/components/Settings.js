@@ -69,6 +69,20 @@ function Settings({
         <div>
           <input
             type="radio"
+            id="four_steps"
+            name="steps"
+            value={4}
+            checked={numberOfSteps === 4}
+            onChange={(event) =>
+              handleChangeSteps(parseInt(event.target.value))
+            }
+            disabled={isRunning}
+          />
+          <label htmlFor="six_steps">4</label>
+        </div>
+        <div>
+          <input
+            type="radio"
             id="six_steps"
             name="steps"
             value={6}
@@ -78,49 +92,35 @@ function Settings({
             }
             disabled={isRunning}
           />
-          <label htmlFor="six_steps">6</label>
+          <label htmlFor="ten_steps">6</label>
         </div>
         <div>
           <input
             type="radio"
-            id="ten_steps"
+            id="nine_steps"
             name="steps"
-            value={10}
-            checked={numberOfSteps === 10}
+            value={9}
+            checked={numberOfSteps === 9}
             onChange={(event) =>
               handleChangeSteps(parseInt(event.target.value))
             }
             disabled={isRunning}
           />
-          <label htmlFor="ten_steps">10</label>
+          <label htmlFor="fourteen_steps">9</label>
         </div>
         <div>
           <input
             type="radio"
-            id="fourteen_steps"
+            id="twelve_steps"
             name="steps"
-            value={14}
-            checked={numberOfSteps === 14}
+            value={12}
+            checked={numberOfSteps === 12}
             onChange={(event) =>
               handleChangeSteps(parseInt(event.target.value))
             }
             disabled={isRunning}
           />
-          <label htmlFor="fourteen_steps">14</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="twenty_steps"
-            name="steps"
-            value={20}
-            checked={numberOfSteps === 20}
-            onChange={(event) =>
-              handleChangeSteps(parseInt(event.target.value))
-            }
-            disabled={isRunning}
-          />
-          <label htmlFor="twenty_steps">20</label>
+          <label htmlFor="twenty_steps">12</label>
         </div>
       </fieldset>
       <fieldset>

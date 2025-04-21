@@ -7,7 +7,7 @@ function App() {
   const titleImageUrl = new URL("./img/title.png", import.meta.url);
 
   const [numberOfPads, setNumberOfPads] = React.useState(4);
-  const [numberOfSteps, setNumberOfSteps] = React.useState(6);
+  const [numberOfSteps, setNumberOfSteps] = React.useState(4);
   const [speed, setSpeed] = React.useState("slow");
   const [appearance, setAppearance] = React.useState("symbols");
   const [isRunning, setIsRunning] = React.useState(false);
@@ -90,6 +90,7 @@ function App() {
           </div>
         </div>
       </div>
+      <span className="author">by Geraldo</span>
     </>
   );
 }

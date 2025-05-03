@@ -51,6 +51,8 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .innerWrapper {
@@ -475,9 +477,11 @@ input[type="radio"] {
   left: 0;
   right: 0;
   bottom: 0;
-  /* background-color: rgba(253, 2, 2, 0.5); */
   z-index: 2;
   cursor: pointer;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
 #overlayElements {
@@ -487,27 +491,47 @@ input[type="radio"] {
   color: white;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 366px;
+  align-items: center;
+  justify-content: center;
+  /* display: grid;
+  grid-template-rows: 150px 350px 100px;
+  grid-template-columns: 100%;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  width: 366px;
+  height: 600px; */
 }
 
 #overlayElements .icon {
   font-size: 150px;
+  align-self: start;
+  justify-self: center;
 }
 
 #overlayElements button {
-  margin-left: 40px;
+  background-color: #6a0202;
   padding: 10px 20px;
-  color: black;
+  color: white;
   font-size: 20px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   cursor: pointer;
+  border: none;
 }
 
-.author {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 366px;
+#overlayElements button:hover {
+  background-color: #b30404;
+}
+
+#overlayElements .score {
+  font-size: 60px;
   text-align: center;
-  color: #d1cece;
-  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  background-color: #036d13;
+  padding: 10px 20px;
+  margin-top: 20px;
+  display: block;
 }

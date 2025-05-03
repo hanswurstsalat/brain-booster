@@ -90,7 +90,6 @@ function App() {
           </div>
         </div>
       </div>
-      <span className="author">by Geraldo</span>
     </>
   );
 }

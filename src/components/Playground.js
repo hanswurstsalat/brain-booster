@@ -15,6 +15,7 @@ function Playground({
   const [isOn, setIsOn] = React.useState(false);
   const [index, setIndex] = React.useState(0);
   const [clickCount, setClickCount] = React.useState(0);
+  const [score, setScore] = React.useState(0);
   const [overlayIcon, setOverlayIcon] = React.useState("✅");
 
   const overlayRef = React.useRef();
@@ -49,7 +50,6 @@ function Playground({
   function handleClick(padIndex, count) {
     if (isRunning) {
       if (padIndex !== sequence[count]) {
-        console.log("error");
         play({ id: "error" });
         handleIsRunning(false);
         setOverlayIcon("❌");
@@ -59,10 +59,11 @@ function Playground({
         const newClickCount = count + 1;
         setClickCount(newClickCount);
         if (newClickCount >= sequence.length) {
-          console.log("success");
           play({ id: "success" });
           handleIsRunning(false);
           setOverlayIcon("✅");
+          const scoreValue = getScore();
+          setScore(scoreValue);
           overlayRef.current.style.background = "rgba(10, 253, 2, 0.5)";
           overlayRef.current.style.display = "block";
         }
@@ -82,7 +83,7 @@ function Playground({
     ].current.className.replace(" active", "");
   }
 
-  function handleRepeat() {
+  function repeatSequence() {
     setIndex(0);
     setClickCount(0);
     handleIsRunning(true);
@@ -126,6 +127,34 @@ function Playground({
     volume: 0.3,
   });
 
+  //weighting for score-calculation
+  const weightingPads = {
+    4: 1,
+    6: 2,
+    9: 4,
+    12: 6,
+  };
+  const weightingSteps = {
+    4: 1,
+    6: 2,
+    9: 10,
+    12: 50,
+  };
+  const weightingSpeed = {
+    slow: 0,
+    medium: 10,
+    fast: 20,
+    warp: 100,
+  };
+
+  function getScore() {
+    return (
+      numberOfPads * weightingPads[numberOfPads] +
+      sequence.length * weightingSteps[sequence.length] +
+      weightingSpeed[speed]
+    );
+  }
+
   //create play-pads
   let pads = [];
   for (let i = 0; i < numberOfPads; i++) {
@@ -153,9 +182,9 @@ function Playground({
   }
 
   //play sound on mount to prevent sound-delay on first pad-click! Bringt leider nix!!:-(
-  React.useEffect(() => {
-    play({ id: "success" });
-  }, []);
+  // React.useEffect(() => {
+  //   play({ id: "success" });
+  // }, []);
 
   React.useEffect(() => {
     if (isRunning) {
@@ -200,8 +229,10 @@ function Playground({
         <div id="overlayElements">
           <span className="icon">{overlayIcon}</span>
           <br />
-          {clickCount < sequence.length && (
-            <button onClick={handleRepeat}>Try again</button>
+          {clickCount < sequence.length ? (
+            <button onClick={repeatSequence}>Try again</button>
+          ) : (
+            <span className="score">Score: {score}</span>
           )}
         </div>
       </div>

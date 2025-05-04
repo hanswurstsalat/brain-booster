@@ -173,6 +173,7 @@ function Playground({
         onClick={() => handleClick(i, clickCount)}
         onMouseDown={() => handleMouseDown(i)}
         onMouseUp={() => handleMouseUp(i)}
+        onMouseLeave={() => handleMouseUp(i)}
       >
         <div className={`padFront frontDimensions-${numberOfPads} ${color}`}>
           {appearance === "symbols" && <span className={symbolClasses}></span>}

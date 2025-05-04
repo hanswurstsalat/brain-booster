@@ -8,4 +8,4 @@ Game instructions: Simply repeat the given sequence.
 ![brainbooster](https://github.com/user-attachments/assets/cbc56574-0082-41fc-927a-29acb315e094)
 
 
-Built with parcel. Sounds realized with useSound-hook form Josh Comeau (https://github.com/joshwcomeau/use-sound).
+Built with parcel. Sounds realized with useSound-hook from Josh Comeau (https://github.com/joshwcomeau/use-sound).

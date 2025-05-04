@@ -147,7 +147,7 @@ function Settings({
             onChange={(event) => handleChangeSpeed(event.target.value)}
             disabled={isRunning}
           />
-          <label htmlFor="medium">medium</label>
+          <label htmlFor="medium">mid</label>
         </div>
         <div>
           <input
